@@ -29,6 +29,14 @@ function LoginForm() {
         const data = await response.json()
 
         console.log(data)
+         if (!user || !await bcrypt.compare(req.body.password, user.passwordDigest)) {
+        res.status(404).json({
+            message: `Could not find a user with the provided username and password`
+        })
+    } else {
+        res.json({ user })
+    }
+
     }
 
 
