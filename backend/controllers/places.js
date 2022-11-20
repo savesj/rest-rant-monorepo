@@ -93,7 +93,6 @@ router.post('/:placeId/comments', async (req, res) => {
     if (!place) {
         res.status(404).json({ message: `Could not find place with id "${placeId}"` })
     }
-
     
     let currentUser;
     try {
@@ -124,7 +123,7 @@ router.post('/:placeId/comments', async (req, res) => {
 
     res.send({
         ...comment.toJSON(),
-        author
+        author: req.currentUser
     })
 })
 
